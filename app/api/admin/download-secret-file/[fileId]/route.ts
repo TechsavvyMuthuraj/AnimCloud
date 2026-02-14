@@ -4,7 +4,7 @@ import { getUserGoogleToken, getDriveClient } from "@/lib/google-drive";
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { fileId: string } }
+    context: { params: Promise<{ fileId: string }> }
 ) {
     try {
         const { userId } = await clerkAuth();
@@ -21,7 +21,7 @@ export async function GET(
             return NextResponse.json({ error: "Admin access required" }, { status: 403 });
         }
 
-        const { fileId } = params;
+        const { fileId } = await context.params;
 
         // Get user's Google OAuth token
         let accessToken;
