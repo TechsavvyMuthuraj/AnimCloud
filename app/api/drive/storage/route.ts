@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
             usage: parseInt(quota?.usage || "0"),
             limit: parseInt(quota?.limit || "0"),
             usageInDrive: parseInt(quota?.usageInDrive || "0"),
-            usageInTrash: parseInt(quota?.usageInTrash || "0"),
+            usageInTrash: parseInt(quota?.usageInDriveTrash || "0"),
         });
 
     } catch (error: any) {
